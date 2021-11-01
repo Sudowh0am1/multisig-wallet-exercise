@@ -9,15 +9,13 @@ contract MultiSignatureWallet {
       bytes data;
     }
     
-    
     address[] public owners;
     // number of confirmations
     uint public required;
     mapping (address => bool) public isOwner;
     uint public transactionCount;
     mapping (uint => Transaction) public transactions;
-    mapping (uint => mapping (address => bool)) public confirmations;
-
+    mapping (uint => mapping (address => bool)) public confirmations
 
     event Deposit (address indexed sender, uint value);
     event Submission (uint indexed transactionId);
@@ -25,7 +23,6 @@ contract MultiSignatureWallet {
 
     event Execution(uint indexed transactionId);
     event ExecutionFailure(uint indexed transactionId);
-    
 
     modifier validRequirement(uint ownerCount, uint _required) {
         if (_required > ownerCount || _required == 0 || ownerCount == 0)
