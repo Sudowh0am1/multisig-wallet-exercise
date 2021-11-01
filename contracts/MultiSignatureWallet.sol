@@ -57,7 +57,6 @@ contract MultiSignatureWallet {
     /// @param data Transaction data payload.
     /// @return Returns transaction ID.
     function submitTransaction(address destination, uint value, bytes memory data) public returns (uint transactionId) {
-       
         require(isOwner[msg.sender]);
         transactionId = addTransaction(destination, value, data);
         confirmTransaction(transactionId);
@@ -82,7 +81,7 @@ contract MultiSignatureWallet {
     /// @dev Allows anyone to execute a confirmed transaction.
     /// @param transactionId Transaction ID.
     function executeTransaction(uint transactionId) public {
-        
+    
         // in order to prevent double spent
         require(transactions[transactionId].executed == false);
         if (isConfirmed(transactionId)) {
@@ -97,7 +96,6 @@ contract MultiSignatureWallet {
             }
         }
     }
-
 		/*
 		 * (Possible) Helper Functions
 		 */
