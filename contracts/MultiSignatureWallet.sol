@@ -20,7 +20,6 @@ contract MultiSignatureWallet {
     event Deposit (address indexed sender, uint value);
     event Submission (uint indexed transactionId);
     event Confirmation(address indexed sender, uint indexed transactionId);
-
     event Execution(uint indexed transactionId);
     event ExecutionFailure(uint indexed transactionId);
 
@@ -29,7 +28,6 @@ contract MultiSignatureWallet {
             revert();
         _;
     }  
-
 
     /// @dev Fallback function allows to deposit ether.
     function() external payable{
@@ -75,7 +73,6 @@ contract MultiSignatureWallet {
         confirmations[transactionId][msg.sender] = true;
         emit Confirmation(msg.sender, transactionId);
         executeTransaction(transactionId);
-
     }
 
     /// @dev Allows an owner to revoke a confirmation for a transaction.
